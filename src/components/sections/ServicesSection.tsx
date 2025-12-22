@@ -1,5 +1,4 @@
 import { ServiceCard } from "@/components/ServiceCard";
-import { HighlightText } from "@/components/ui/highlight-text";
 import {
   Users,
   Video,
@@ -68,9 +67,16 @@ export function ServicesSection() {
           <span className="inline-block px-4 py-2 bg-tertiary border-2 border-border rounded-full text-sm font-mono shadow-xs mb-6">
             Layanan Kami
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6">
-            Solusi lengkap untuk <HighlightText variant="blue">bisnis digitalmu</HighlightText>
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6 leading-tight">
+            Solusi lengkap untuk{" "}
+            <span className="relative inline-block mx-1">
+              Copywriting & Voice Over
+              <span className="absolute left-0 bottom-1 w-full h-3 bg-blue-300/60 -z-10 rounded-sm" />
+            </span>{" "}
+            bisnis digitalmu
           </h2>
+
           <p className="text-lg text-muted-foreground">
             Dari konten, website, sampai iklan—kami bantu dari strategi sampai eksekusi.
           </p>
