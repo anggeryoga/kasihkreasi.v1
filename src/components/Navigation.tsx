@@ -22,12 +22,17 @@ export function Navigation() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b-2 border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          
+          {/* LOGO IMAGE */}
           <a 
             href="#" 
-            className="font-serif text-xl font-bold tracking-tight hover:opacity-80 transition-opacity"
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
-            kasihKreasi
+            <img 
+              src="/logos/logo.webp" 
+              alt="kasihKreasi Logo" 
+              className="h-10 w-auto object-contain" // h-10 (40px) cukup pas untuk navbar h-16
+            />
           </a>
 
           {/* Desktop Navigation */}
