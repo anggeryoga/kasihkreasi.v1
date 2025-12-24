@@ -1,6 +1,6 @@
 import { HighlightText } from "@/components/ui/highlight-text";
 
-// Update: Mengarahkan ke file di folder public/logos
+// Data partner (9 logo)
 const partners = [
   { name: "Partner 1", logo: "/logos/1.webp" },
   { name: "Partner 2", logo: "/logos/2.webp" },
@@ -14,11 +14,14 @@ const partners = [
 ];
 
 export function PartnersSection() {
-  // Duplicate partners for seamless loop
-  const duplicatedPartners = [...partners, ...partners];
+  // 1. Membagi data menjadi 2 baris
+  // Baris pertama: 5 logo awal
+  const firstRow = partners.slice(0, 5);
+  // Baris kedua: 4 logo sisa
+  const secondRow = partners.slice(5);
 
   return (
-    <section className="py-16 md:py-20 overflow-hidden">
+    <section className="py-16 md:py-20 overflow-hidden bg-background">
       <div className="container mx-auto px-4 mb-10">
         <div className="max-w-2xl mx-auto text-center">
           <span className="inline-block px-4 py-2 bg-tertiary border-2 border-border rounded-full text-sm font-mono shadow-xs mb-6">
@@ -30,37 +33,59 @@ export function PartnersSection() {
         </div>
       </div>
 
-      {/* Marquee container */}
-      <div className="relative">
-        {/* Gradient fade left */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-background to-transparent z-10" />
-        {/* Gradient fade right */}
-        <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-background to-transparent z-10" />
+      <div className="relative flex flex-col gap-6 md:gap-8">
+        {/* Gradient Fade (Overlay kiri & kanan agar terlihat halus) */}
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-background to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-background to-transparent z-10" />
 
-        {/* Marquee track */}
-        <div className="flex animate-marquee">
-          {duplicatedPartners.map((partner, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 mx-6 md:mx-10"
-            >
-              <div className="w-32 md:w-40 h-16 md:h-20 bg-card border-2 border-border rounded-xl flex items-center justify-center px-4 hover:shadow-sm transition-shadow">
-                {partner.logo ? (
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all"
-                  />
-                ) : (
-                  <span className="font-mono text-xs md:text-sm text-muted-foreground text-center">
-                    {partner.name}
-                  </span>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* --- ROW 1 (Gerak ke KIRI) --- */}
+        <MarqueeRow items={firstRow} direction="left" />
+
+        {/* --- ROW 2 (Gerak ke KANAN) --- */}
+        <MarqueeRow items={secondRow} direction="right" />
       </div>
     </section>
+  );
+}
+
+// Komponen kecil untuk membuat Baris Marquee agar kodenya rapi
+function MarqueeRow({ items, direction }: { items: typeof partners; direction: "left" | "right" }) {
+  // Duplikasi item agar looping mulus (min. 4x duplikasi jika item sedikit agar layar penuh)
+  const duplicatedItems = [...items, ...items, ...items, ...items];
+
+  return (
+    <div className="flex overflow-hidden">
+      <div
+        className="flex animate-marquee"
+        // Trik CSS untuk membalik arah animasi tanpa setting Tailwind tambahan
+        style={{ animationDirection: direction === "right" ? "reverse" : "normal" }}
+      >
+        {duplicatedItems.map((partner, index) => (
+          <div key={`${partner.name}-${index}`} className="flex-shrink-0 mx-3 md:mx-4">
+            {/* 
+               PERBAIKAN UKURAN:
+               1. w-auto: Lebar otomatis menyesuaikan rasio gambar
+               2. h-20 md:h-24: Tinggi fixed agar kotak seragam
+               3. min-w-[120px]: Agar logo kecil pun kotaknya tetap punya lebar minimum
+               4. p-4: Padding agar logo punya ruang napas (tidak mepet border)
+            */}
+            <div className="h-20 md:h-24 min-w-[140px] md:min-w-[180px] bg-card border-2 border-border rounded-xl flex items-center justify-center px-6 hover:shadow-md transition-all hover:-translate-y-1">
+              {partner.logo ? (
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  // object-contain: Memastikan logo utuh (tidak terpotong/gepeng)
+                  className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
+                />
+              ) : (
+                <span className="font-mono text-xs md:text-sm text-muted-foreground">
+                  {partner.name}
+                </span>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
