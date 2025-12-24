@@ -1,7 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { HighlightText } from "@/components/ui/highlight-text";
 import { StickerCard } from "@/components/ui/sticker-card";
-import { Send, Mail, MapPin, Phone } from "lucide-react";
+import { MessageCircle, Mail, MapPin, Phone } from "lucide-react";
+
+// Ganti dengan nomor WhatsApp Anda (format: 628xxxxxxxxxx)
+const WHATSAPP_NUMBER = "6285155145788";
+const WHATSAPP_MESSAGE = "Halo kasihKreasi! Saya ingin tanya-tanya tentang layanan kalian.";
+const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
 export function ContactSection() {
   return (
@@ -20,38 +25,23 @@ export function ContactSection() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          {/* Contact Form */}
-          <StickerCard variant="default" className="p-8">
-            <form className="space-y-5">
-              <div>
-                <label className="block text-sm font-medium mb-2">Nama</label>
-                <input
-                  type="text"
-                  placeholder="Siapa nama kamu?"
-                  className="w-full px-4 py-3 bg-background border-2 border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Email</label>
-                <input
-                  type="email"
-                  placeholder="email@example.com"
-                  className="w-full px-4 py-3 bg-background border-2 border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Pesan</label>
-                <textarea
-                  rows={4}
-                  placeholder="Ceritain apa yang ada di pikiranmu..."
-                  className="w-full px-4 py-3 bg-background border-2 border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary transition-all resize-none"
-                />
-              </div>
-              <Button variant="hero" size="lg" className="w-full">
-                <Send className="w-4 h-4 mr-2" />
-                Kirim Pesan
-              </Button>
-            </form>
+          {/* WhatsApp CTA */}
+          <StickerCard variant="default" className="p-8 flex flex-col items-center justify-center text-center">
+            <div className="w-20 h-20 bg-tertiary border-2 border-border rounded-2xl flex items-center justify-center mb-6">
+              <MessageCircle className="w-10 h-10" />
+            </div>
+            <h3 className="font-serif text-2xl font-bold mb-4">
+              Chat langsung via WhatsApp
+            </h3>
+            <p className="text-muted-foreground mb-6">
+              Paling cepat dan nyaman! Langsung ceritain kebutuhanmu, kami siap bantu.
+            </p>
+            <Button variant="hero" size="xl" asChild>
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Chat Sekarang
+              </a>
+            </Button>
           </StickerCard>
 
           {/* Contact Info */}
@@ -67,13 +57,20 @@ export function ContactSection() {
             </StickerCard>
 
             <StickerCard variant="mint" rotate="left" className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-card border-2 border-border rounded-xl flex items-center justify-center flex-shrink-0">
-                <Phone className="w-6 h-6" />
-              </div>
-              <div>
-                <h4 className="font-serif font-semibold text-lg mb-1">WhatsApp</h4>
-                <p className="opacity-80">+62 851-5514-5788</p>
-              </div>
+              <a 
+                href={WHATSAPP_LINK} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-start gap-4 w-full"
+              >
+                <div className="w-12 h-12 bg-card border-2 border-border rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-serif font-semibold text-lg mb-1">WhatsApp</h4>
+                  <p className="opacity-80">+62 851-5514-5788</p>
+                </div>
+              </a>
             </StickerCard>
 
             <StickerCard variant="lavender" rotate="right" className="flex items-start gap-4">

@@ -10,6 +10,11 @@ const navLinks = [
   { href: "#kontak", label: "Kontak" },
 ];
 
+// Ganti dengan nomor WhatsApp Anda (format: 628xxxxxxxxxx)
+const WHATSAPP_NUMBER = "6285155145788";
+const WHATSAPP_MESSAGE = "Halo kasihKreasi! Saya tertarik untuk konsultasi tentang digital marketing.";
+const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -40,8 +45,10 @@ export function Navigation() {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button variant="sticker" size="sm">
-              Konsultasi
+            <Button variant="sticker" size="sm" asChild>
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+                Konsultasi
+              </a>
             </Button>
           </div>
 
@@ -73,8 +80,10 @@ export function Navigation() {
               {link.label}
             </a>
           ))}
-          <Button variant="sticker" size="sm" className="w-fit mt-2">
-            Konsultasi
+          <Button variant="sticker" size="sm" className="w-fit mt-2" asChild>
+            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+              Konsultasi
+            </a>
           </Button>
         </div>
       </div>

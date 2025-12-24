@@ -95,10 +95,14 @@ export default {
   				'0%, 100%': { transform: 'rotate(-1deg)' },
   				'50%': { transform: 'rotate(1deg)' }
   			},
-  			'fade-in-up': {
-  				'0%': { opacity: '0', transform: 'translateY(20px)' },
-  				'100%': { opacity: '1', transform: 'translateY(0)' }
-  			}
+			'fade-in-up': {
+				'0%': { opacity: '0', transform: 'translateY(20px)' },
+				'100%': { opacity: '1', transform: 'translateY(0)' }
+			},
+			'marquee': {
+				'0%': { transform: 'translateX(0)' },
+				'100%': { transform: 'translateX(-50%)' }
+			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
@@ -106,7 +110,8 @@ export default {
   			'float': 'float 4s ease-in-out infinite',
   			'float-slow': 'float-slow 6s ease-in-out infinite',
   			'wiggle': 'wiggle 3s ease-in-out infinite',
-  			'fade-in-up': 'fade-in-up 0.5s ease-out forwards'
+			'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
+			'marquee': 'marquee 25s linear infinite'
   		},
   		fontFamily: {
   			sans: ['Space Grotesk', 'ui-sans-serif', 'system-ui', 'sans-serif'],

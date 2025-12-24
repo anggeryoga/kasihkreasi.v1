@@ -2,6 +2,11 @@ import { Button } from "@/components/ui/button";
 import { HighlightText } from "@/components/ui/highlight-text";
 import { ArrowRight } from "lucide-react";
 
+// Ganti dengan nomor WhatsApp Anda (format: 628xxxxxxxxxx)
+const WHATSAPP_NUMBER = "6285155145788";
+const WHATSAPP_MESSAGE = "Halo kasihKreasi! Saya ingin jadwalkan konsultasi gratis untuk brand saya.";
+const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
 export function CTASection() {
   return (
     <section className="py-20 md:py-28">
@@ -20,9 +25,11 @@ export function CTASection() {
               dengan cara yang paling sesuai sama brandmu.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button variant="outline" size="xl" className="bg-card hover:bg-card/90">
-                Jadwalkan Konsultasi Gratis
-                <ArrowRight className="w-5 h-5 ml-1" />
+              <Button variant="outline" size="xl" className="bg-card hover:bg-card/90" asChild>
+                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+                  Jadwalkan Konsultasi Gratis
+                  <ArrowRight className="w-5 h-5 ml-1" />
+                </a>
               </Button>
             </div>
             <p className="text-sm mt-6 opacity-70">

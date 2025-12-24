@@ -3,6 +3,11 @@ import { HighlightText } from "@/components/ui/highlight-text";
 import { StickerCard } from "@/components/ui/sticker-card";
 import { Sparkles, TrendingUp, Video } from "lucide-react";
 
+// Ganti dengan nomor WhatsApp Anda (format: 628xxxxxxxxxx)
+const WHATSAPP_NUMBER = "6285155145788";
+const WHATSAPP_MESSAGE = "Halo kasihKreasi! Saya tertarik untuk konsultasi tentang digital marketing.";
+const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
 export function HeroSection() {
   return (
     <section className="min-h-screen pt-24 pb-16 flex items-center relative overflow-hidden">
@@ -32,11 +37,15 @@ export function HeroSection() {
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <Button variant="hero" size="xl">
-                Mulai Konsultasi
+              <Button variant="hero" size="xl" asChild>
+                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+                  Mulai Konsultasi
+                </a>
               </Button>
-              <Button variant="hero-outline" size="xl">
-                Lihat Portofolio
+              <Button variant="hero-outline" size="xl" asChild>
+                <a href="#portofolio">
+                  Lihat Portofolio
+                </a>
               </Button>
             </div>
           </div>
