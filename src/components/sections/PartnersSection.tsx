@@ -14,7 +14,6 @@ const partners = [
 ];
 
 export function PartnersSection() {
-  // Membagi data menjadi 2 baris
   const firstRow = partners.slice(0, 5);
   const secondRow = partners.slice(5);
 
@@ -32,14 +31,10 @@ export function PartnersSection() {
       </div>
 
       <div className="relative flex flex-col gap-6 md:gap-8">
-        {/* Gradient Fade */}
         <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-background to-transparent z-10" />
         <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-background to-transparent z-10" />
 
-        {/* --- ROW 1 --- */}
         <MarqueeRow items={firstRow} direction="left" />
-
-        {/* --- ROW 2 --- */}
         <MarqueeRow items={secondRow} direction="right" />
       </div>
     </section>
@@ -47,7 +42,6 @@ export function PartnersSection() {
 }
 
 function MarqueeRow({ items, direction }: { items: typeof partners; direction: "left" | "right" }) {
-  // Duplikasi item agar looping mulus
   const duplicatedItems = [...items, ...items, ...items, ...items];
 
   return (
@@ -58,25 +52,22 @@ function MarqueeRow({ items, direction }: { items: typeof partners; direction: "
       >
         {duplicatedItems.map((partner, index) => (
           <div key={`${partner.name}-${index}`} className="flex-shrink-0 mx-3 md:mx-4">
+            
             {/* 
-               PERBAIKAN DIMENSI KHUSUS 800x500 (Rasio 1.6):
-               
-               1. Mobile:  w-[160px] h-[100px] (Skala 1:5 dari asli)
-               2. Desktop: w-[200px] h-[125px] (Skala 1:4 dari asli)
-               
-               Hasilnya: Kotak akan pas banget sama gambar, tidak ada ruang kosong berlebih.
+               PERUBAHAN DI SINI:
+               1. p-0: Hapus padding (sebelumnya p-2)
+               2. overflow-hidden: Agar gambar tidak "bocor" keluar dari rounded corners
             */}
-            <div className="w-[160px] h-[100px] md:w-[200px] md:h-[125px] bg-card border-2 border-border rounded-xl flex items-center justify-center p-2 hover:shadow-md transition-all hover:-translate-y-1">
+            <div className="w-[160px] h-[100px] md:w-[200px] md:h-[125px] bg-card border-2 border-border rounded-xl flex items-center justify-center p-0 overflow-hidden hover:shadow-md transition-all hover:-translate-y-1">
               {partner.logo ? (
                 <img
                   src={partner.logo}
                   alt={partner.name}
-                  // object-contain: Pastikan gambar masuk semua
-                  // w-full h-full: Memenuhi kotak yang sudah kita set rasionya
-                  className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
+                  // object-cover: Paksa gambar memenuhi seluruh kotak
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
                 />
               ) : (
-                <span className="font-mono text-xs md:text-sm text-muted-foreground">
+                <span className="font-mono text-xs md:text-sm text-muted-foreground p-2">
                   {partner.name}
                 </span>
               )}
