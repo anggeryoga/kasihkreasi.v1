@@ -1,7 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ValueSection } from "@/components/sections/ValueSection";
-import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { VideoPortfolioSection } from "@/components/sections/VideoPortfolioSection";
 import { PortfolioSection } from "@/components/sections/PortfolioSection";
